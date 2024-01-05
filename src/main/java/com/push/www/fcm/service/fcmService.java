@@ -43,7 +43,8 @@ public class fcmService {
 		GoogleCredentials googleCredentials = GoogleCredentials.getApplicationDefault().createScoped(Arrays.asList(SCOPES));
 
 		googleCredentials.refreshIfExpired();
-        return googleCredentials.refreshAccessToken().getTokenValue();
+		googleCredentials.refreshAccessToken();
+		  return googleCredentials.getAccessToken().getTokenValue();
 	}
 
 	/**
