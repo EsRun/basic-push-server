@@ -12,9 +12,11 @@ public class fcmMessageType {
 		switch (type) {
 		case 1: {
 			msgTitle = "1번 타입";
+			break;
 		}
 		case 2:{
 			msgTitle = "2번 타입";
+			break;
 		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + type);
