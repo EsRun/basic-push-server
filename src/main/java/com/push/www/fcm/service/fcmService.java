@@ -201,8 +201,8 @@ public class fcmService {
 
 		JsonObject jMessage = new JsonObject();
 		jMessage.add("notification", jNotification);
-//		jMessage.addProperty("topic", "news");
-		jMessage.addProperty("token", "ezGPwgzmSmSzCcaAxHtPCg:APA91bE3skSmy4xyRoshKQpIPrUdx9_xhJT39tnnwlrJ-cX29v3cKmKOGwbZZ28lv6snrRkkVpKyDvlJWLE0bHcJQ-W0D2K3jtLqBEkJ5lg5kv_Q8O0NqrnxjGPemzKfBOFlIU3gkYbg");
+		jMessage.addProperty("topic", "test");
+//		jMessage.addProperty("token", "ezGPwgzmSmSzCcaAxHtPCg:APA91bE3skSmy4xyRoshKQpIPrUdx9_xhJT39tnnwlrJ-cX29v3cKmKOGwbZZ28lv6snrRkkVpKyDvlJWLE0bHcJQ-W0D2K3jtLqBEkJ5lg5kv_Q8O0NqrnxjGPemzKfBOFlIU3gkYbg");
 
 		JsonObject jFcm = new JsonObject();
 		jFcm.add(MESSAGE_KEY, jMessage);

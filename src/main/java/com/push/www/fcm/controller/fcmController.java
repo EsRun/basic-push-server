@@ -11,8 +11,12 @@ import com.push.www.fcm.service.fcmService;
 @RestController
 public class fcmController {
 
-	@Autowired
 	fcmService service;
+
+	@Autowired
+	public fcmController(fcmService service) {
+		this.service = service;
+	}
 	
 	@GetMapping("/sendMsg")
 	public void sendMessage() throws IOException {
