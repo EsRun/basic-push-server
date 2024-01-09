@@ -1,0 +1,26 @@
+# Server Port
+server:
+  port: '8080'
+
+spring:
+  # Mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=UTC&allowMultiQueries=true
+    username: root
+    password: tsei1234
+  # DevTools
+  devtools:
+    livereload:
+      enabled: 'true'
+    
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+      
