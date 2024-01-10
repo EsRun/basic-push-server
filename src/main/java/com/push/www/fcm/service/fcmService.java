@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.auth.oauth2.AccessToken;
@@ -16,10 +17,14 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import com.google.protobuf.Extension.MessageType;
+import com.push.www.fcm.util.fcmMessageType;
 
 @Service
 public class fcmService {
 
+	public fcmMessageType fcmType;
+	
 	private static final String PROJECT_ID = "fcm-push-learn";
 	private static final String BASE_URL = "https://fcm.googleapis.com";
 	private static final String FCM_SEND_ENDPOINT = "/v1/projects/" + PROJECT_ID + "/messages:send";
@@ -31,6 +36,11 @@ public class fcmService {
 	private static final String BODY = "Notification from FCM";
 	public static final String MESSAGE_KEY = "message";
 
+	@Autowired
+	public fcmService(fcmMessageType fcmType) {
+		this.fcmType = fcmType;
+	}
+	
 	/**
 	 * Retrieve a valid access token that can be use to authorize requests to the
 	 * FCM REST API.
@@ -54,7 +64,6 @@ public class fcmService {
 	 * @throws IOException
 	 */
 	private static HttpURLConnection getConnection() throws IOException {
-		
 		
 		String headerAuth = "Bearer " + getAccessToken();
 		System.out.println(headerAuth);
@@ -183,6 +192,7 @@ public class fcmService {
 	 * @throws IOException
 	 */
 	public static void sendCommonMessage() throws IOException {
+
 		JsonObject notificationMessage = buildNotificationMessage();
 		System.out.println("FCM request body for message using common notification object:");
 		prettyPrint(notificationMessage);
@@ -196,9 +206,11 @@ public class fcmService {
 	 */
 	private static JsonObject buildNotificationMessage() {
 		JsonObject jNotification = new JsonObject();
-		jNotification.addProperty("title", TITLE);
-		jNotification.addProperty("body", BODY);
-
+		//jNotification.addProperty("title", TITLE);
+		//jNotification.addProperty("body", BODY);
+		fcmMessageType f = new fcmMessageType(2);
+		jNotification = f.alertType(f.type);
+		
 		JsonObject jMessage = new JsonObject();
 		jMessage.add("notification", jNotification);
 		jMessage.addProperty("topic", "test");
