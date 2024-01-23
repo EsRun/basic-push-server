@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
+### fcm service Json ###
+src/main/resources/config/
