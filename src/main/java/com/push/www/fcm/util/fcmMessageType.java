@@ -18,7 +18,8 @@ public class fcmMessageType {
 		JsonObject msgTitle = new JsonObject();
 		switch (type) {
 		case 1: {
-			msgTitle.addProperty("1번", "내용");
+			msgTitle.addProperty("title", "제목1");
+			msgTitle.addProperty("body", "내용1");
 			break;
 		}
 		case 2:{

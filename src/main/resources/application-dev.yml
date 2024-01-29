@@ -6,7 +6,7 @@ spring:
   # Mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=UTC&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/mungyeong_2?useSSL=false&serverTimezone=UTC&allowMultiQueries=true
     username: root
     password: tsei1234
   # DevTools

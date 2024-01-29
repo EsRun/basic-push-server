@@ -1,21 +1,19 @@
 package com.push.www.fcm.config;
 
+
+
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.Scanner;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
-import com.google.gson.JsonObject;
+
 
 import jakarta.annotation.PostConstruct;
 
@@ -25,9 +23,15 @@ public class fcmConfig {
 	@PostConstruct
 	public void init() {
 		try{
-            FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.getApplicationDefault())
-                    .build();
+			//System.out.println(GoogleCredentials.getApplicationDefault());
+			//FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.getApplicationDefault()).build();
+			Resource resource = new ClassPathResource("config/mungyeong-firebase-adminsdk.json");
+			InputStream serviceAccount = resource.getInputStream();
+			//FileInputStream serviceAccount = new FileInputStream("config/fcm.json");
+
+					FirebaseOptions options = new FirebaseOptions.Builder()
+					  .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+					  .build();
             FirebaseApp.initializeApp(options);
         }catch (Exception e){
             e.printStackTrace();
